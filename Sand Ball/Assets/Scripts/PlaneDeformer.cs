@@ -22,6 +22,7 @@ public class PlaneDeformer : MonoBehaviour
 
     public void deformThePlane(Vector3 positionToDeform)
     {
+
         positionToDeform = this.transform.InverseTransformPoint(positionToDeform);
 
         for (int i = 0; i < verts.Length; i++)
@@ -30,6 +31,7 @@ public class PlaneDeformer : MonoBehaviour
 
             if (dist < radiusOfDeformation)
             {
+                Debug.Log("deforming hehe");
                 verts[i] -= Vector3.up * powerOfDeformation;
             }
 

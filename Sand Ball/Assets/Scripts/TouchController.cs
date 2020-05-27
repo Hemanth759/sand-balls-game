@@ -12,24 +12,21 @@ public class TouchController : MonoBehaviour
     private Ray ray;
     private RaycastHit hit;
     private Camera cam;
-    int temp;
-    
+
     // Start is called before the first frame update
     void Start()
     {
-        temp = 0;
         cam = this.transform.GetComponent<Camera>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
-            Debug.Log("deforming " + temp);
-            temp++;
-            // doformMesh();
+            doformMesh();
         }
     }
+
 
     private void doformMesh()
     {
