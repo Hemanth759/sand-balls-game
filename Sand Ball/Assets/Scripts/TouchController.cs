@@ -8,6 +8,7 @@ public class TouchController : MonoBehaviour
 {
     // public references
     public GameObject cylinderPrefab;
+    public PlaneDeformer sandPlane;
 
     // private references
     private Ray ray;
@@ -20,8 +21,9 @@ public class TouchController : MonoBehaviour
         cam = this.transform.GetComponent<Camera>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
+
         if (Input.GetMouseButton(0))
         {
             doformMesh();
@@ -35,11 +37,10 @@ public class TouchController : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            PlaneDeformer sandPlane;
-            if (hit.transform.TryGetComponent<PlaneDeformer>(out sandPlane))
+            sandPlane.deformThePlane(hit.point);
+            if (hit.transform.tag == "Ring")
             {
-                sandPlane.deformThePlane(hit.point);
-                Instantiate(cylinderPrefab, new Vector3(hit.point.x, hit.point.y, hit.point.z + 0.11f), Quaternion.Euler(-90f, 0f, 0f));
+                Destroy(hit.transform.gameObject);
             }
         }
     }

@@ -28,6 +28,7 @@ public class PlaneDeformer : MonoBehaviour
     {
         Vector3 hitpoint = positionToDeform;
         positionToDeform = this.transform.InverseTransformPoint(positionToDeform);
+        bool somethingDeformed = false;
 
         for (int i = 0; i < verts.Length; i++)
         {
@@ -36,10 +37,16 @@ public class PlaneDeformer : MonoBehaviour
             if (dist < radiusOfDeformation)
             {
                 verts[i] -= Vector3.up * powerOfDeformation;
+                somethingDeformed = true;
             }
 
         }
-        mesh.vertices = verts;
-        col.sharedMesh = mesh;
+        if (somethingDeformed)
+        {
+            mesh.vertices = verts;
+            col.sharedMesh = mesh;
+            Instantiate(cylinderPrefab, new Vector3(hitpoint.x, hitpoint.y, hitpoint.z + 0.11f), Quaternion.Euler(-90f, 0f, 0f));
+
+        }
     }
 }
