@@ -31,7 +31,6 @@ public class PlaneDeformer : MonoBehaviour
 
             if (dist < radiusOfDeformation)
             {
-                Debug.Log("deforming hehe");
                 verts[i] -= Vector3.up * powerOfDeformation;
             }
 
