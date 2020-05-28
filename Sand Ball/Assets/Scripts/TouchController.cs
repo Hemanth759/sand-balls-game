@@ -7,7 +7,7 @@ using UnityEngine;
 public class TouchController : MonoBehaviour
 {
     // public references
-    public GameObject cylinderPrefab; 
+    public GameObject cylinderPrefab;
 
     // private references
     private Ray ray;
@@ -39,9 +39,8 @@ public class TouchController : MonoBehaviour
             if (hit.transform.TryGetComponent<PlaneDeformer>(out sandPlane))
             {
                 sandPlane.deformThePlane(hit.point);
-                Instantiate(cylinderPrefab, new Vector3(hit.point.x, hit.point.y, hit.point.z + 0.11f), Quaternion.Euler(-90f,0f,0f));
+                Instantiate(cylinderPrefab, new Vector3(hit.point.x, hit.point.y, hit.point.z + 0.11f), Quaternion.Euler(-90f, 0f, 0f));
             }
-            Debug.Log(hit.transform.TryGetComponent<PlaneDeformer>(out sandPlane));
         }
     }
 }
