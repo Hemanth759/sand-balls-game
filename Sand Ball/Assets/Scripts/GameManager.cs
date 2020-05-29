@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
     public float radius;
     public TouchController cam;
     public List<Balls> activeBalls;
+    public GameObject endScreen;
 
     // private varaibles
 
@@ -26,9 +28,28 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    internal void showGameOver()
     {
-        
+        Invoke("activateEndScreen", 7f);
+    }
+
+    private void activateEndScreen()
+    {
+        endScreen.SetActive(true);
+    }
+
+    internal void startGame()
+    {
+        throw new NotImplementedException();
+    }
+
+    internal void restartGame()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void endGame()
+    {
+        throw new NotImplementedException();
     }
 }
