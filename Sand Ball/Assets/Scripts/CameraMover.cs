@@ -13,6 +13,7 @@ public class CameraMover : MonoBehaviour
     private float lowestBallY;
 
     private void Start() {
+        Screen.SetResolution ((int)Screen.width, (int)Screen.height, true);
         lowestBallY = this.transform.position.y;
     }
 
