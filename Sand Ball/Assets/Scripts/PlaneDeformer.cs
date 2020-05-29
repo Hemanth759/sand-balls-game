@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlaneDeformer : MonoBehaviour
 {
@@ -45,8 +43,7 @@ public class PlaneDeformer : MonoBehaviour
         {
             mesh.vertices = verts;
             col.sharedMesh = mesh;
-            Instantiate(cylinderPrefab, new Vector3(hitpoint.x, hitpoint.y, hitpoint.z + 0.11f), Quaternion.Euler(-90f, 0f, 0f));
-
+            // Instantiate(cylinderPrefab, new Vector3(hitpoint.x, hitpoint.y, hitpoint.z + 0.11f), Quaternion.Euler(-90f, 0f, 0f));
         }
     }
 }
