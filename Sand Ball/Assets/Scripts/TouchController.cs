@@ -6,22 +6,21 @@ public class TouchController : MonoBehaviour
     // public references
     public GameObject cylinderPrefab;
     public float planeDistance;
+    public GameObject board;
 
 
     // private references
-    [SerializeField]
     private PlaneDeformer[] sandPlanes;
-    [SerializeField]
     private Vector3[] planeCenters;
     private Ray ray;
     private RaycastHit hit;
     private Camera cam;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         cam = this.transform.GetComponent<Camera>();
-        sandPlanes = Object.FindObjectsOfType<PlaneDeformer>();
+        sandPlanes = board.GetComponentsInChildren<PlaneDeformer>();
         planeCenters = new Vector3[sandPlanes.Length];
         for (int i = 0; i < planeCenters.Length; i++)
         {
@@ -60,5 +59,16 @@ public class TouchController : MonoBehaviour
                 Destroy(hit.transform.gameObject);
             }
         }
+    }
+
+    public void defromToHoles(Vector3 position, float radius) {
+        for (int i = 0; i < planeCenters.Length; i++)
+            {
+                if ((planeCenters[i] - position).sqrMagnitude < planeDistance)
+                {
+                    // deform this planes area;
+                    sandPlanes[i].puthole(position, radius);
+                }
+            }
     }
 }
