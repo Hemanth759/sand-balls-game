@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class GameManager : MonoBehaviour
     public TouchController cam;
     public List<Balls> activeBalls;
     public GameObject endScreen;
+    public Animator animator;
 
     // private varaibles
 
@@ -35,17 +37,17 @@ public class GameManager : MonoBehaviour
 
     private void activateEndScreen()
     {
-        endScreen.SetActive(true);
+        animator.SetTrigger("GameEnded");
     }
 
     internal void startGame()
     {
-        throw new NotImplementedException();
+        animator.SetTrigger("StartGame");
     }
 
     internal void restartGame()
     {
-        throw new NotImplementedException();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void endGame()

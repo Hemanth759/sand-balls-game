@@ -28,6 +28,7 @@ public class ScoreCounter : MonoBehaviour
 
             if (!endingGame)
             {
+                endingGame = true;
                 gameManager.showGameOver();
             }
         }

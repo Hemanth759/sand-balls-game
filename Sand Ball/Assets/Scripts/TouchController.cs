@@ -7,6 +7,7 @@ public class TouchController : MonoBehaviour
     public GameObject cylinderPrefab;
     public float planeDistance;
     public GameObject board;
+    public GameObject StartScreen;
 
 
     // private references
@@ -15,6 +16,7 @@ public class TouchController : MonoBehaviour
     private Ray ray;
     private RaycastHit hit;
     private Camera cam;
+    private bool startTouching;
 
     // Start is called before the first frame update
     void Awake()
@@ -26,12 +28,17 @@ public class TouchController : MonoBehaviour
         {
             planeCenters[i] = sandPlanes[i].gameObject.transform.GetComponent<Renderer>().bounds.center;
         }
+        startTouching = false;
+    }
+
+    private void Update() {
+        startTouching = !StartScreen.activeSelf;
     }
 
     private void FixedUpdate()
     {
 
-        if (Input.GetMouseButton(0))
+        if (startTouching && Input.GetMouseButton(0))
         {
             doformMesh();
         }
