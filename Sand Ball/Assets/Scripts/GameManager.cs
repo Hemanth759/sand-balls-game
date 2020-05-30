@@ -30,12 +30,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    internal void showGameOver()
-    {
-        Invoke("activateEndScreen", 7f);
-    }
-
-    private void activateEndScreen()
+    public void showGameOver()
     {
         animator.SetTrigger("GameEnded");
     }
@@ -43,6 +38,11 @@ public class GameManager : MonoBehaviour
     internal void startGame()
     {
         animator.SetTrigger("StartGame");
+    }
+
+    internal void showNextButton()
+    {
+        animator.SetTrigger("ShowNext");
     }
 
     internal void restartGame()

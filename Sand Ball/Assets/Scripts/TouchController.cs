@@ -38,7 +38,7 @@ public class TouchController : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if (startTouching && Input.GetMouseButton(0))
+        if (startTouching && Input.touchCount > 0)
         {
             doformMesh();
         }
@@ -47,7 +47,7 @@ public class TouchController : MonoBehaviour
 
     private void doformMesh()
     {
-        ray = cam.ScreenPointToRay(Input.mousePosition);
+        ray = cam.ScreenPointToRay(Input.GetTouch(0).position);
 
         if (Physics.Raycast(ray, out hit))
         {

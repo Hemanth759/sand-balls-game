@@ -7,6 +7,7 @@ public class ScoreCounter : MonoBehaviour
 {
     public GameManager gameManager;
     public TextMeshProUGUI scoreText;
+    public ParticleSystem fireworks;
 
     private int score;
     private bool endingGame;
@@ -25,11 +26,15 @@ public class ScoreCounter : MonoBehaviour
         {
             score++;
             scoreText.text = "Score: " + score;
+            if (!fireworks.isPlaying)
+            {
+                fireworks.Play();
+            }
 
             if (!endingGame)
             {
                 endingGame = true;
-                gameManager.showGameOver();
+                gameManager.showNextButton();
             }
         }
     }

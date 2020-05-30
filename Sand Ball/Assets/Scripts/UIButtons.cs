@@ -19,6 +19,6 @@ public class UIButtons : MonoBehaviour
     }
 
     public void endGame() {
-        gameManager.endGame();
+        gameManager.showGameOver();
     }
 }
