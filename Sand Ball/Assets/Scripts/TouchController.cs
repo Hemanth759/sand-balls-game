@@ -31,24 +31,32 @@ public class TouchController : MonoBehaviour
         startTouching = false;
     }
 
-    private void Update() {
+    private void Update()
+    {
         startTouching = !StartScreen.activeSelf;
     }
 
     private void FixedUpdate()
     {
-
-        if (startTouching && Input.touchCount > 0)
+        if (startTouching && Input.GetMouseButton(0))
         {
+            ray = cam.ScreenPointToRay(Input.mousePosition);
             doformMesh();
         }
+
+    //     if (startTouching && Input.touchCount > 0)
+    //     {
+    //         foreach (Touch touch in Input.touches)
+    //         {
+    //             ray = cam.ScreenPointToRay(touch.position);
+    //             doformMesh();
+    //         }
+    //     }
     }
 
 
     private void doformMesh()
     {
-        ray = cam.ScreenPointToRay(Input.GetTouch(0).position);
-
         if (Physics.Raycast(ray, out hit))
         {
             // sandPlanes.deformThePlane(hit.point);
@@ -68,14 +76,15 @@ public class TouchController : MonoBehaviour
         }
     }
 
-    public void defromToHoles(Vector3 position, float radius) {
+    public void defromToHoles(Vector3 position, float radius)
+    {
         for (int i = 0; i < planeCenters.Length; i++)
+        {
+            if ((planeCenters[i] - position).sqrMagnitude < planeDistance)
             {
-                if ((planeCenters[i] - position).sqrMagnitude < planeDistance)
-                {
-                    // deform this planes area;
-                    sandPlanes[i].puthole(position, radius);
-                }
+                // deform this planes area;
+                sandPlanes[i].puthole(position, radius);
             }
+        }
     }
 }
